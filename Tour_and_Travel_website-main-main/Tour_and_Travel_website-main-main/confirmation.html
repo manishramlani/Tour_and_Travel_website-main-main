@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+
+<head>
+    
+    <title>Travel | Train</title>
+    
+    <link rel="stylesheet" type="text/css" href="train.css" />
+
+    <script type="text/javascript">
+        function getUrlVars() { //Function used to get values from the URL after being submitted by the previous page using GET
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        function outputConfirmation() {
+
+            /////////////////////////////////////////////////////////
+            ///// Grab all data from URL and store in Valiables /////
+            /////////////////////////////////////////////////////////
+
+            var from = getUrlVars()["from"];
+            from = from.replace(/\u002B/g, " ");
+            var to = getUrlVars()["to"];
+            to = to.replace(/\u002B/g, " ");
+            var journey = getUrlVars()["journey"];
+            var departday = getUrlVars()["departday"];
+            var departmonth = getUrlVars()["departmonth"];
+            var departmin = getUrlVars()["departmin"];
+            var departhour = getUrlVars()["departhour"];
+            var returnday = getUrlVars()["returnday"];
+            var returnmonth = getUrlVars()["returnmonth"];
+            var returnhour = getUrlVars()["returnhour"];
+            var returnmin = getUrlVars()["returnmin"];
+            var adults = getUrlVars()["adults"];
+            var children = getUrlVars()["children"];
+            var tclass = getUrlVars()["tclass"];
+            var title = getUrlVars()["title"];
+            var fname = getUrlVars()["fname"];
+            fname = fname.replace(/\u002B/g, " ");
+            var lname = getUrlVars()["lname"];
+            lname = lname.replace(/\u002B/g, " ");
+            var email = getUrlVars()["email"];
+            email = email.replace('%40', '@');
+            var phone = getUrlVars()["phone"];
+            phone = phone.replace(/\u002B/g, " ");
+            phone = phone.replace('%2B', '+');
+            var address1 = getUrlVars()["address1"];
+            address1 = address1.replace(/\u002B/g, " ");
+            var address2 = getUrlVars()["address2"];
+            address2 = address2.replace(/\u002B/g, " ");
+            var town = getUrlVars()["town"];
+            var county = getUrlVars()["county"];
+            var postcode = getUrlVars()["postcode"];
+            postcode = postcode.replace(/\u002B/g, " ");
+
+            document.getElementById('from').innerHTML += from; //Print out departure station
+            document.getElementById('to').innerHTML += to; //Print out destination station
+
+            document.getElementById('departday').innerHTML += departday; //Print out departure day
+            document.getElementById('departmonth').innerHTML += departmonth; //Print out departure month
+            document.getElementById('departmin').innerHTML += departmin; //Print out departure minutes
+            document.getElementById('departhour').innerHTML += departhour; //Print out departre hour
+
+            if (journey == "return") { //If the travel is a Return journey
+                var returndetails = "Returning: " + returnday + " " + returnmonth + " @ " + returnhour + ":" + returnmin; //Generate the return details
+            } else {
+                var returndetails = "";
+            } //Set return details to blank
+
+            document.getElementById('returndetails').innerHTML += returndetails; //Print out return details
+
+            document.getElementById('tclass').innerHTML += tclass; //Print out ticket class
+
+            document.getElementById('adults').innerHTML += adults; //Print out number of adult tickets
+            document.getElementById('children').innerHTML += children; //Print out number of child tickets
+
+            document.getElementById('name').innerHTML += title + " " + fname + " " + lname; //Print out full name
+            document.getElementById('address1').innerHTML += address1; //Print out address line 1
+            if (address2 != "") {
+                document.getElementById('address2').innerHTML += address2;
+            } //If address2 isnt empty then print out address line 2
+            document.getElementById('town').innerHTML += town; //Print out town
+            document.getElementById('county').innerHTML += county; //Print out county
+            document.getElementById('postcode').innerHTML += postcode; //Print out postcode
+
+            document.getElementById('email').innerHTML += email; //Print out email address
+            if (phone != "") {
+                document.getElementById('phone').innerHTML += "Phone: " + phone;
+            } else {
+                phone = "";
+            } //If phone number was provided print it out
+
+            var price = 0; //Set price to 0
+
+            //////////////////////////////////////////////////////////
+            ///// Set price for single ticket between 2 stations /////
+            //////////////////////////////////////////////////////////
+
+            if (from == "Jaipur" && to == "Delhi") {
+                price = 220;
+            }
+            if (from == "Jaipur" && to == "Mumbai") {
+                price = 758;
+            }
+            if (from == "Jaipur" && to == "Kolkata") {
+                price = 1199;
+            }
+            if (from == "Jaipur" && to == "Ajmer") {
+                price = 450;
+            }
+            if (from == "Jaipur" && to == "Jodhpur") {
+                price = 480;
+            }
+
+            if (from == "Delhi" && to == "Jaipur") {
+                price = 250;
+            }
+            if (from == "Delhi" && to == "Mumbai") {
+                price = 1287;
+            }
+            if (from == "Delhi" && to == "Kolkata") {
+                price = 999;
+            }
+            if (from == "Delhi" && to == "Ajmer") {
+                price = 450;
+            }
+            if (from == "Delhi" && to == "Jodhpur") {
+                price = 400;
+            }
+
+            if (from == "Mumbai" && to == "Jaipur") {
+                price = 1200;
+            }
+            if (from == "Mumbai" && to == "Delhi") {
+                price = 1350;
+            }
+            if (from == "Mumbai" && to == "Kolkata") {
+                price = 900;
+            }
+            if (from == "Mumbai" && to == "Ajmer") {
+                price = 1050;
+            }
+            if (from == "Mumbai" && to == "Jodhpur") {
+                price = 1000;
+            }
+
+            if (from == "Kolkata" && to == "Jaipur") {
+                price = 1250;
+            }
+            if (from == "Kolkata" && to == "Delhi") {
+                price = 1100;
+            }
+            if (from == "Kolkata" && to == "Mumbai") {
+                price = 700;
+            }
+            if (from == "Kolkata" && to == "Ajmer") {
+                price = 1499;
+            }
+            if (from == "Kolkata" && to == "Jodhpur") {
+                price = 1400;
+            }
+
+            if (from == "Ajmer" && to == "Jaipur") {
+                price = 480;
+            }
+            if (from == "Ajmer" && to == "Delhi") {
+                price = 560;
+            }
+            if (from == "Ajmer" && to == "Mumbai") {
+                price = 950;
+            }
+            if (from == "Ajmer" && to == "Kolkata") {
+                price = 1400;
+            }
+            if (from == "Ajmer" && to == "Jodhpur") {
+                price = 300;
+            }
+
+            if (from == "Jodhpur" && to == "Jaipur") {
+                price = 400;
+            }
+            if (from == "Jodhpur" && to == "Delhi") {
+                price = 500;
+            }
+            if (from == "Jodhpur" && to == "Mumbai") {
+                price = 780;
+            }
+            if (from == "Jodhpur" && to == "Kolkata") {
+                price = 1300;
+            }
+            if (from == "Jodhpur" && to == "Ajmer") {
+                price = 300;
+            }
+
+            var adultsprice = price * adults; //For every adult ticket multiply the ticket price and store in adultsprice
+
+            var childprice = price * (children / 2); //For every child multiply the ticket price by .5 so a child ticket is half that of an adult and store in childprice
+
+            price = adultsprice + childprice; //Add the adultprice and childprice together and store in price
+
+            if (tclass == "First") {
+                price = price * 1.5;
+            } //If tickets are for first class multiply price by 2.5 to make them more expensive than standard class tickets
+
+            var departprice = price; //Set departprice to be the same as price
+
+            document.getElementById('departprice').innerHTML += "&#8377;" + price.toFixed(2); //Print out the current price in departprice with a £ sign and rounded to two decimal places
+
+            if (journey == "return") {
+                price = price * 1.75;
+            } //If the tickets are for a return journey multiply the total price by 1.75 so the return journey costs 75% of the outward journey
+
+            if (journey == "return") { //If tickets are for a return journey
+                document.getElementById('returnprice').innerHTML += "Return Price: &#8377;" + (price - departprice).toFixed(2); //Print out the price of the return ticket by subtracting the departprice from price and rounding to two decimal places
+            }
+
+            document.getElementById('totalprice').innerHTML += "&#8377;" + price.toFixed(2); //Print out the total price
+
+        }
+
+        function printConfirmation() {
+
+            window.print(); //Print the page
+
+        }
+    </script>
+
+</head>
+
+<body onload="outputConfirmation();">
+    <div id="container">
+        <div id="header1">
+            <h1 >Here's your ticket!</h1>
+        </div>
+
+        <div id="step3">
+            <div id="inner-container">
+
+                <div class="form-left">
+
+                    From: <span id="from"></span>
+                    <p>
+
+                        To: <span id="to"></span>
+                        <p>
+
+                            Departing: <span id="departday"></span> <span id="departmonth"></span> @ <span id="departhour"></span>:<span id="departmin"></span>
+                            <p>
+
+                                <span id="returndetails"></span>
+                                <p>
+
+                                    Ticket Class: <span id="tclass"></span>
+                                    <p>
+
+                                        Adults: <span id="adults"></span>
+                                        <p>
+                                            Children: <span id="children"></span>
+
+                </div>
+
+                <div class="form-right step3-right-shift">
+
+                    <p class="address">
+                        <span id="name"></span>
+                        <p class="address">
+                            <span id="address1" class="address"></span>
+                            <p class="address">
+                                <span id="address2" class="address"></span>
+                                <p class='address'>
+                                    <span id="town" class="address"></span>
+                                    <p class="address">
+                                        <span id="county" class="address"></span>
+                                        <p class="address">
+                                            <span id="postcode" class="address"></span>
+                                            <p>
+                                                <p>
+                                                    </br>
+                                                    <p class="address">
+                                                        Outbound Price: <span id="departprice"></span>
+                                                        <p class="address">
+                                                            <span id="returnprice"></span>
+                                                            <p class="address">
+                                                                Total Price: <span id="totalprice"></span>
+                                                                <p class="address">
+
+                </div>
+
+                <div id="contactdetails">
+                    <p class="address">
+                        Email: <span id="email"></span>
+                        <p class="address">
+                            <span id="phone"></span>
+                            <p class="address">
+                </div>
+
+                <div class="next-button"><a class="button medium white" onclick="printConfirmation();"><span>Print Confirmation</span></a></div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
